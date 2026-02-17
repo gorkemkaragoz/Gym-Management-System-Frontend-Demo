@@ -1,0 +1,54 @@
+<!-- src/app/member/account/account.component.html -->
+<div class="account-page" *ngIf="user">
+  <div class="card-container">
+
+    <!-- Sol taraf: Hesap bilgileri -->
+    <div class="card">
+      <h1 class="section-title">My Account</h1>
+      <img [src]="user.photoUrl ? user.photoUrl : 'assets/blank-image/blank_profile.png'"
+            alt="Profile Photo"
+            class="profile-photo" 
+      />
+      <div class="info">
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+        <p class="email">{{ user.email }}</p>
+        <p class="role">Role: {{ user.roleName }}</p>
+        <p class="gender">Gender: {{ user.gender }}</p>
+        <p class="tc">TCKN: {{ user.tcNo }}</p>
+      </div>
+      <button class="btn-change" (click)="navigateToChangePassword()">Change password</button>
+    </div>
+
+    <!-- Sağ taraf: Paket bilgileri -->
+    <div class="card certificate-card">
+      <h1 class="section-title">My Package</h1>
+      <div class="info">
+        <p>Type: {{ user.packageName || 'N/A' }}</p>
+        <p>Status: {{ user.membershipStatus || 'N/A' }}</p>
+      </div>
+    </div>
+
+    <!-- Yeni kart: Body Measurements -->
+    <div class="card">
+      <h1 class="section-title">Body Measurements</h1>
+
+      <!-- Ay/Yıl Seçimi -->
+      <div class="form-row">
+        <label for="monthFilter">Month / Year</label>
+        <select id="monthFilter" class="form-control" [(ngModel)]="selectedMonthYear" (change)="filterMeasurementsByMonth()">
+          <option [ngValue]="''" disabled selected>Select</option>
+          <option *ngFor="let m of availableMonths" [value]="m">{{ m }}</option>
+        </select>
+      </div>
+
+      <!-- Ölçüm bilgileri -->
+      <div class="info" *ngIf="filteredMeasurements.length > 0">
+        <p>Weight: {{ filteredMeasurements[0].weight }} kg</p>
+        <p>Height: {{ filteredMeasurements[0].height }} cm</p>
+        <p>BMI: {{ filteredMeasurements[0].bmi }}</p>
+      </div>
+      <p *ngIf="filteredMeasurements.length === 0">No measurement found for selected month.</p>
+    </div>
+
+  </div>
+</div>

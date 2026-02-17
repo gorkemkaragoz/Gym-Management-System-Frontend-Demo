@@ -1,0 +1,45 @@
+<!--src/app/trainer/home/home.component.hmtl -->
+<div class="trainer-home-container">
+  <h2 class="welcome-title">Welcome Back 😊</h2>
+  <h3 class="user-name">Trainer First name !</h3>
+
+  <h3 class="schedule-title">My Lessons Schedule</h3>
+  <p class="schedule-subtitle">
+    View your weekly class schedule with detailed start and end times, along with the number of enrolled students.
+  </p>
+
+  <div class="days-tabs">
+    <span 
+      class="day-tab" 
+      *ngFor="let day of days" 
+      [class.active]="selectedDay === day" 
+      (click)="selectDay(day)"
+    >
+      {{ day }}
+    </span>
+  </div>
+
+  <table class="schedule-table" *ngIf="filteredLessons.length > 0">
+    <thead>
+      <tr>
+        <th>Lesson Name</th>
+        <th>Start Time</th>
+        <th>Finish Time</th>
+        <th>Student Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let lesson of filteredLessons">
+        <td>{{ lesson.courseName }}</td>
+        <td>{{ lesson.startTime?.substring(0,5) }}</td>
+        <td>{{ lesson.endTime?.substring(0,5) }}</td>
+        <td>{{ lesson.currentStudentCount }}/{{ lesson.maxCapacity }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="filteredLessons.length === 0" style="margin-top: 20px; color: #888;">
+    No lessons scheduled for this day.
+  </p>
+</div>
+

@@ -1,0 +1,87 @@
+<!--src/app/admin/lesson-scheduler/lesson-scheduler.component.html-->
+<h2 style="margin-left: 1rem;">Manage Lesson Scheduling</h2>
+
+<div class="filters">
+  <label>
+    Filter by Trainer:
+    <select (change)="onTrainerFilterChange($any($event.target).value)">
+      <option value="All">All</option>
+      <option *ngFor="let t of trainers" [value]="t.id">{{ t.name }}</option>
+    </select>
+  </label>
+
+  <label style="margin-left:1rem">
+    Filter by Day:
+    <select (change)="onDayFilterChange($any($event.target).value)">
+
+      <option *ngFor="let d of days" [value]="d">{{ d }}</option>
+    </select>
+  </label>
+</div>
+
+<table class="schedule-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Day</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Lesson Name</th>
+      <th>Trainer</th>
+      <th>Capacity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of filteredOverview; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ item.courseDate | date:'EEEE' }}</td>
+      <td>{{ item.startTime.substring(0,5) }}</td>
+      <td>{{ item.endTime.substring(0,5) }}</td>
+      <td>{{ item.courseName }}</td>
+      <td>{{ item.trainerName }}</td>
+      <td>{{ item.maxCapacity }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<form [formGroup]="form" (ngSubmit)="onAdd()" class="lesson-form">
+  <div class="form-grid">
+    <div class="form-group">
+      <label>Lesson Name</label>
+      <input formControlName="name" placeholder="Lesson Name" />
+    </div>
+
+    <div class="form-group">
+      <label>Trainer</label>
+      <select formControlName="trainerId" [compareWith]="compareByValue">
+        <option [ngValue]="null">Select Trainer</option>
+        <option *ngFor="let t of trainers" [ngValue]="t.id">{{ t.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Day</label>
+      <input type="date" formControlName="courseDate" />
+    </div>
+
+    <div class="form-group">
+      <label>Start Time</label>
+      <input type="time" formControlName="startTime" />
+    </div>
+
+    <div class="form-group">
+      <label>End Time</label>
+      <input type="time" formControlName="endTime" />
+    </div>
+
+    <div class="form-group">
+      <label>Maximum Capacity</label>
+      <input type="number" formControlName="maxCapacity" min="1" />
+    </div>
+
+    <div class="form-group btn-cell">
+      <label>&nbsp;</label>
+      <button type="submit" [disabled]="form.invalid">Add Lesson</button>
+    </div>
+  </div>
+</form>

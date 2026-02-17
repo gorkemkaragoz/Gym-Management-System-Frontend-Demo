@@ -1,0 +1,39 @@
+<div class="admin-home-container">
+  <h1 class="page-title">Admin Dashboard</h1>
+
+  <div class="dashboard-content">
+    <div class="card count-card trainer-card">
+      <div class="card-icon">
+        <i class="fas fa-dumbbell"></i> </div>
+      <div class="card-details">
+        <h3 class="card-title">Total Trainers</h3>
+        <p class="card-number" *ngIf="!isLoading">{{ totalTrainers }}</p>
+        <mat-spinner *ngIf="isLoading" [diameter]="30" class="spinner"></mat-spinner>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <h2 class="section-title">Welcome, Admin!</h2>
+      <p>
+        This is your central hub for managing the Gym Management System. From here, you can oversee all aspects of your gym's operations.
+        Use the navigation menu to manage user accounts, schedule lessons, handle inquiries, and review overall system performance.
+        Your dashboard provides key metrics at a glance, ensuring you always have a clear overview of your gym's health and activity.
+        Let's make sure our members and trainers have the best experience possible!
+      </p>
+      <p>
+        Feel free to explore the features and optimize your gym's efficiency.
+      </p>
+    </div>
+
+    <div class="card count-card member-card">
+      <div class="card-icon">
+        <i class="fas fa-users"></i> </div>
+      <div class="card-details">
+        <h3 class="card-title">Total Members</h3>
+        <p class="card-number" *ngIf="!isLoading">{{ totalMembers }}</p>
+        <mat-spinner *ngIf="isLoading" [diameter]="30" class="spinner"></mat-spinner>
+      </div>
+    </div>
+  </div>
+
+  </div>

@@ -1,0 +1,106 @@
+<!-- src/app/trainer/account/account.component.html -->
+<div class="account-page" *ngIf="user">
+  <!-- ÜST SATIR -->
+  <div class="card-row">
+    <!-- My Account -->
+    <div class="card">
+      <h1 class="section-title">My Account</h1>
+      <img [src]="user.photoUrl ? user.photoUrl : 'assets/blank-image/blank_profile.png'"
+            alt="Profile Photo"
+            class="profile-photo" 
+      />
+
+      <div class="info">
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+        <p class="email">{{ user.email }}</p>
+        <p class="role">Role: {{ user.roleName }}</p>
+        <p class="gender">Gender: {{ user.gender }}</p>
+        <p class="tc">TCKN: {{ user.tcNo }}</p>
+      </div>
+      <button class="btn-change" (click)="navigateToChangePassword()">Change password</button>
+    </div>
+
+    <!-- My Certificates -->
+    <div class="card certificate-card">
+      <h1 class="section-title">My Certificates</h1>
+      <div class="info">
+        <p>Certificate Name: {{ user.certificateName || 'N/A' }}</p>
+        <p>Issued By: {{ user.issuedBy || 'N/A' }}</p>
+        <p>Issued Date: {{ user.issuedDate || 'N/A' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALT SATIR -->
+  <div class="card-row">
+    <!-- My Students -->
+    <div class="card student-card">
+      <h1 class="section-title">My Students</h1>
+      <table class="student-table" *ngIf="students.length > 0">
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>BMI</th>
+            <th>Weight</th>
+            <th>Height</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of students">
+            <td>{{ s.firstName }} {{ s.lastName }}</td>
+            <td>{{ s.bmi !== null ? s.bmi : 'N/A' }}</td>
+            <td>{{ s.weight !== null ? s.weight + ' kg' : 'N/A' }}</td>
+            <td>{{ s.height !== null ? s.height + ' cm' : 'N/A' }}</td>
+            <td>{{ s.email }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="students.length === 0">No students enrolled yet.</p>
+    </div>
+
+
+    <!-- Body Measure -->
+    <div class="card">
+      <h1 class="section-title">Body Measure</h1>
+
+      <form class="body-form" (ngSubmit)="saveMeasurement()">
+        <!-- Select Member -->
+        <div class="form-group">
+          <label for="memberSelect">Select Member</label>
+          <select id="memberSelect" class="form-control" [(ngModel)]="selectedStudentId" name="selectedStudentId"
+            required>
+            <option [ngValue]="null" disabled>Select a student</option>
+            <option *ngFor="let s of students" [ngValue]="s.userId">
+              {{ s.firstName }} {{ s.lastName }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Height -->
+        <div class="form-group">
+          <label for="height">Height (cm)</label>
+          <input type="number" id="height" class="form-control" [(ngModel)]="height" name="height"
+            (input)="calculateBmi()" placeholder="Enter height" required />
+        </div>
+
+        <!-- Weight -->
+        <div class="form-group">
+          <label for="weight">Weight</label>
+          <input type="number" id="weight" class="form-control" [(ngModel)]="weight" name="weight"
+            (input)="calculateBmi()" placeholder="Enter weight" required />
+        </div>
+
+        <!-- BMI + Save -->
+        <div class="form-group horizontal-group">
+          <div class="bmi-box">
+            <label for="bmi">BMI</label>
+            <input type="text" id="bmi" class="form-control" [value]="bmi" disabled />
+          </div>
+          <button class="btn-change" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

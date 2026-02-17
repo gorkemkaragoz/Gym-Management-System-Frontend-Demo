@@ -1,0 +1,138 @@
+/* src/app/admin/home/home.component.css */
+.admin-home-container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2.5em;
+  color: #3f51b5; /* Primary color */
+  margin-bottom: 40px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-wrap: wrap; /* Küçük ekranlarda alt alta geçmesini sağlar */
+  gap: 30px; /* Kartlar ve ana içerik arasındaki boşluk */
+  justify-content: center; /* Ortaya hizala */
+  align-items: flex-start; /* Üstten başla */
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  flex-direction: column; /* İçeriği dikey sırala */
+  text-align: center;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  flex: 1; /* Esneklik */
+  min-width: 250px; /* Minimum genişlik */
+  max-width: 300px; /* Maksimum genişlik */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.count-card .card-icon {
+  font-size: 3em;
+  margin-bottom: 15px;
+  color: #3f51b5; /* Primary color */
+}
+
+.trainer-card .card-icon {
+  color: #ff4081; /* Accent color for trainers */
+}
+
+.member-card .card-icon {
+  color: #4CAF50; /* Green for members */
+}
+
+.card-title {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.card-number {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: #3f51b5;
+}
+
+.main-content {
+  flex: 2; /* Kartlardan daha fazla yer kaplasın */
+  min-width: 450px; /* Minimum genişlik */
+  background-color: #e8eaf6; /* Light indigo background */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section-title {
+  font-size: 1.8em;
+  color: #3f51b5;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.main-content p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #444;
+  text-align: justify;
+}
+
+/* Spinner stilleri */
+.spinner {
+  margin: auto; /* Ortalamak için */
+}
+
+/* Font Awesome ikonları için */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+
+/* Responsive tasarım için medya sorguları */
+@media (max-width: 992px) {
+  .dashboard-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card, .main-content {
+    max-width: 100%; /* Küçük ekranlarda tam genişlik */
+    min-width: unset;
+  }
+}
+
+@media (max-width: 576px) {
+  .admin-home-container {
+    padding: 20px;
+  }
+  .page-title {
+    font-size: 2em;
+  }
+  .card-number {
+    font-size: 2em;
+  }
+  .section-title {
+    font-size: 1.5em;
+  }
+  .main-content p {
+    font-size: 1em;
+  }
+}

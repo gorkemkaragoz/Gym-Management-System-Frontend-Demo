@@ -1,0 +1,57 @@
+<nav class="main-nav">
+  <div class="brand" [routerLink]="getHomeLink()">
+    <img src="assets/logo/logo.png" alt="Gym For Healthy" class="logo" />
+    <span class="brand-text">Gym For Healthy</span>
+  </div>
+
+  <ul class="menu">
+    <!-- Dinamik Home -->
+    <li>
+      <a [routerLink]="getHomeLink()"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: true }">
+        Home
+      </a>
+    </li>
+
+    <!-- Anonim kullanıcı -->
+    <ng-container *ngIf="!role">
+      <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+      <li><a routerLink="/plans" routerLinkActive="active">Membership Plans</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+    </ng-container>
+
+    <!-- Member -->
+    <ng-container *ngIf="role === 'MEMBER'">
+      <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+      <li><a routerLink="/plans" routerLinkActive="active">Membership Plans</a></li>
+      <li><a routerLink="/member/trainers" routerLinkActive="active">Trainers</a></li>
+      <li><a routerLink="/member/healthy-bar" routerLinkActive="active">Healthy Bar Menu</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+      <li><a routerLink="/member/account" routerLinkActive="active">My Account</a></li>
+      <li><a routerLink="/member/inbox" routerLinkActive="active">Inbox</a></li>
+    </ng-container>
+
+    <!-- Trainer -->
+    <ng-container *ngIf="role === 'TRAINER'">
+      <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+      <li><a routerLink="/trainer/healthy-bar" routerLinkActive="active">Healthy Bar Menu</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+      <li><a routerLink="/trainer/account" routerLinkActive="active">My Account</a></li>
+      <li><a routerLink="/trainer/inbox" routerLinkActive="active">Inbox</a></li>
+    </ng-container>
+
+    <!-- Admin -->
+    <ng-container *ngIf="role === 'ADMIN'">
+      <li><a routerLink="/admin/users" routerLinkActive="active">Manage Users</a></li>
+      <li><a routerLink="/admin/lessons" routerLinkActive="active">Manage Lesson Scheduling</a></li>
+      <li><a routerLink="/admin/inbox" routerLinkActive="active">Inbox</a></li>
+      <li><a routerLink="/admin/account" routerLinkActive="active">My Account</a></li>
+    </ng-container>
+  </ul>
+
+  <div class="auth-buttons">
+    <button *ngIf="!role" class="btn-login" routerLink="/login">Log In</button>
+    <button *ngIf="role" class="btn-logout" (click)="logout()">Log Out</button>
+  </div>
+</nav>

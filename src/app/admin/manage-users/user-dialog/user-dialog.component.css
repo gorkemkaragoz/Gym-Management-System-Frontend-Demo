@@ -1,0 +1,21 @@
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  min-width: 300px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 24px 16px;
+}
+
+mat-form-field {
+  width: 100%;
+}

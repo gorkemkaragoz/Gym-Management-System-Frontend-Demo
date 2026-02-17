@@ -1,0 +1,142 @@
+/* ------------------------------------------------------------------- */
+/* menu-item.component.css – Ürün Detay Sayfası (Tam Hizalama)         */
+/* ------------------------------------------------------------------- */
+
+/* 1. product-detail-page: Sayfanın ortalanmış içeriğini saran ana container */
+.product-detail-page {
+  max-width: 1200px;      /* İçeriğin maksimum genişliği */
+  margin: 0 auto;         /* Ekranda ortala */
+  padding: 16px;          /* Sağ-sol ve üst-alt boşluk */
+}
+
+/* 2. Breadcrumb (sayfanın sol üstüne tam hizalı) */
+.breadcrumb {
+  font-size: 14px;
+  color: #555555;
+  margin-bottom: 24px;   /* Altında detay bloğu için boşluk */
+  display: flex;
+  align-items: center;   /* “>” sembolünün ve metnin aynı hizada durması */
+  /* Eğer container’ın padding-left:16px ise, breadcrumb da aynı hizadan başlar */
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #2a9d8f;
+  font-weight: 500;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* Ayırıcı (">") sembolü */
+.breadcrumb .separator {
+  margin: 0 8px;
+  color: #999999;
+}
+
+/* Breadcrumb sonundaki mevcut ürün adı */
+.breadcrumb .current {
+  color: #333333;
+  font-weight: 400;
+}
+
+/* 3. detail-content: Ürün görseli ve metin bloğu yan yana duracak (flex) */
+.detail-content {
+  display: flex;
+  flex-wrap: wrap;        /* Ekran daraldığında alt alta geçsin */
+  gap: 32px;              /* Görsel ile metin bloğu arasında yatay boşluk */
+  align-items: flex-start; /* <-- Bu satır çok önemli: üst kenarların hizalanması */
+}
+
+/* 4. Görseli saran wrapper (sabit genişlikte tutmak için) */
+.image-wrapper {
+  flex: 0 0 300px;        /* 300px sabit genişliğe kilitlenmiş wrapper */
+  /* Eğer 300x300 değil de 400x400 istersen, ‘flex: 0 0 400px;’ olarak değiştir */
+}
+
+/* 5. Sabit boyutlu kare formatında ürün resmi */
+.detail-image {
+  width: 300px;           /* Kare genişlik (örneğin 300px) */
+  height: 300px;          /* Kare yükseklik (aynı değer) */
+  object-fit: cover;      /* Fotoğraf kareye taşan kısımlarını kırpar */
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 6. Sağdaki metin alanı (Ürün başlığı, içerikler, alerjenler, fiyat) */
+.info-wrapper {
+  flex: 1;                /* Kalan yatay alanı kapla */
+  min-width: 200px;       /* Çok dar ekranda bu kadar genişlik kalsın */
+}
+
+/* 7. Ürün başlığı: margin-top:0 ile görselin tam üstüne hizalanacaktır */
+.product-title {
+  margin-top: 0;          /* Başlığın üstündeki varsayılan boşluğu kaldır */
+  margin-bottom: 16px;    /* Başlığın altında boşluk */
+  font-size: 28px;
+  color: #333333;
+}
+
+/* 8. Section (Ingredients ve Allergens) başlık + liste ayarları */
+.section {
+  margin-top: 8px;        /* Üstte minimal boşluk, hizayı korumak için 8px */
+}
+
+.section-heading {
+  margin: 0 0 8px 0;      /* Yalnızca alt boşluk; üst boşluk sıfır */
+  font-weight: 600;
+  color: #333333;
+}
+
+.section-list {
+  margin: 0;
+  padding-left: 20px;     /* Madde işareti için girinti */
+  color: #444444;
+  font-size: 16px;
+}
+
+.section-list li {
+  margin-bottom: 4px;
+}
+
+/* 9. Fiyat stili: Büyük puntolu ve TL cinsinden / USD sembollü */
+.price {
+  margin-top: 24px;       /* Metin listesinden fiyatı ayırmak için boşluk */
+  font-size: 24px;
+  font-weight: 600;
+  color: #2a9d8f;
+}
+
+/* 10. Yükleniyor placeholder */
+.loading-placeholder {
+  text-align: center;
+  font-style: italic;
+  color: #777777;
+  padding: 24px;
+}
+
+/* 11. Responsive (Mobil) Düzen */
+/* 768px’den küçük ekranlarda resim ve metin bloğu alt alta geçsin */
+@media (max-width: 768px) {
+  .detail-content {
+    flex-direction: column;
+    align-items: center;  /* Mobilde ortala */
+  }
+
+  /* Mobilde sabit kare boytu yerine oranlı boyutlama */
+  .image-wrapper {
+    width: 100%;
+    max-width: 300px;     /* Yine kare formunu korumak istersen 300 yap */
+  }
+  .detail-image {
+    width: 100%;
+    height: auto;         /* Mobilde yüksekliği genişliğe göre korun */
+  }
+
+  .info-wrapper {
+    width: 100%;
+    padding-top: 16px;
+  }
+}

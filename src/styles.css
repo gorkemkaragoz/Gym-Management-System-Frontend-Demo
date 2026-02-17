@@ -1,0 +1,108 @@
+:root {
+  --brand-light: #f9f9f9;
+  --brand-dark: #333;
+  --brand-primary: #007bff;
+  --brand-primary-dark: #0056b3;
+  --brand-hover: #e2e6ea;
+  --heading-font: 'Segoe UI', Tahoma, sans-serif;
+}
+:root {
+  --brand-blue: #0d6efd;
+  --brand-dark: #212529;
+  --text-color: #212529;
+  --heading-font: 'Roboto', sans-serif;
+}
+
+/* 1) Global reset – Nav’ın üstte çizgi kalmaması için */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2) Tüm elemanlar için kutu boyutlamayı reset’le */
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* 3) Global CSS değişkenleri */
+:root {
+  --brand-light: #e0e0e0;           /* navbar & footer arka planı */
+  --brand-hover: rgba(0, 0, 0, 0.05);
+  --brand-primary: #007bff;
+  --brand-primary-dark: #0056b3;
+  --brand-dark: #333;
+  --heading-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* Eğer ileride footer üstü istersek diye bırakabilirsin */
+#toast-container.toast-bottom-right {
+  position: fixed !important;
+  bottom: 80px !important;    /* Footer üstü için */
+  right: 20px !important;
+  top: 90px !important;
+  left: auto !important;
+  z-index: 1050 !important;
+}
+
+/* === TOAST TEMA === */
+#toast-container > div {
+  min-width: 300px !important;
+  max-width: 500px !important;
+  width: auto !important;
+}
+
+.toast {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  word-break: break-word;
+  padding: 14px 20px;
+}
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* === Renkli Toast Tipleri === */
+
+/* Başarılı işlem → Yeşil */
+.toast-success {
+  background-color: #28a745 !important;
+  border-left: 6px solid #218838;
+  color: white !important;
+}
+
+/* Hatalı işlem → Kırmızı */
+.toast-error {
+  background-color: #dc3545 !important;
+  border-left: 6px solid #c82333;
+  color: white !important;
+}
+
+/* Bilgilendirme → Mavi */
+.toast-info {
+  background-color: #17a2b8 !important;
+  border-left: 6px solid #138496;
+  color: white !important;
+}
+
+/* Uyarı → Sarı */
+.toast-warning {
+  background-color: #ffc107 !important;
+  border-left: 6px solid #e0a800;
+  color: #212529 !important;
+}
+
+/* Başlık alt çizgisiz */
+.toast-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* Kapatma butonu daha düzgün */
+.toast-close-button {
+  color: white !important;
+  font-size: 16px;
+  top: 8px;
+  right: 12px;
+}

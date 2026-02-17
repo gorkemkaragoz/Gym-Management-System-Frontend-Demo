@@ -1,0 +1,136 @@
+<h2 mat-dialog-title>{{ data && data.user ? 'Edit User' : 'Add User' }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" mat-dialog-content>
+
+  <!-- Email -->
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Email*</mat-label>
+    <input matInput formControlName="email" type="email">
+    <mat-error *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+      Email is required and must be valid
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Password -->
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Password{{ data && data.user ? '' : '*' }}</mat-label>
+    <input matInput formControlName="password" type="password">
+    <mat-hint *ngIf="data && data.user">Leave blank to keep current password.</mat-hint>
+    <mat-error *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+      Password is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- First Name -->
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>First Name*</mat-label>
+    <input matInput formControlName="firstName">
+    <mat-error *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched">
+      First name is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Last Name -->
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Last Name*</mat-label>
+    <input matInput formControlName="lastName">
+    <mat-error *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched">
+      Last name is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Gender -->
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Gender*</mat-label>
+    <mat-select formControlName="gender">
+      <mat-option value="Male">Male</mat-option>
+      <mat-option value="Female">Female</mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('gender')?.invalid && form.get('gender')?.touched">
+      Gender is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- TC No -->
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>TC No*</mat-label>
+    <input matInput formControlName="tcNo" maxlength="11">
+    <mat-error *ngIf="form.get('tcNo')?.invalid && form.get('tcNo')?.touched">
+      TC No must be exactly 11 digits
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Role -->
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Role*</mat-label>
+    <mat-select formControlName="roleId">
+      <mat-option *ngFor="let role of roles" [value]="role.id">
+        {{ role.name }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('roleId')?.invalid && form.get('roleId')?.touched">
+      Role is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Trainer alanları -->
+  <ng-container *ngIf="form.get('roleId')?.value === 2">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Certificate Name</mat-label>
+      <input matInput formControlName="certificateName">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Issued By</mat-label>
+      <input matInput formControlName="issuedBy">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Issued Date</mat-label>
+      <input matInput formControlName="issuedDate" type="date">
+    </mat-form-field>
+  </ng-container>
+
+  <!-- Member alanları -->
+  <ng-container *ngIf="form.get('roleId')?.value === 3">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Package Name</mat-label>
+      <mat-select formControlName="packageName">
+        <mat-option value="Full Package">Full Package</mat-option>
+        <mat-option value="Weekly Package">Weekly Package</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Membership Status</mat-label>
+      <input matInput formControlName="membershipStatus" readonly>
+    </mat-form-field>
+  </ng-container>
+
+  <!-- Profile Photo Upload -->
+<div class="full-width" style="margin: 1rem 0;">
+  <mat-label style="display: block; font-weight: 500; margin-bottom: 0.5rem;">Profile Photo</mat-label>
+
+  <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+    <button mat-stroked-button color="primary" type="button" (click)="fileInput.click()">
+      <mat-icon>upload</mat-icon>
+      <span>Select Image</span>
+    </button>
+
+    <span *ngIf="selectedFileName" class="selected-file-name" style="font-size: 0.95rem; color: #555;">
+      {{ selectedFileName }}
+    </span>
+  </div>
+
+  <input type="file" (change)="onFileSelected($event)" #fileInput hidden accept="image/*" />
+</div>
+
+  <!-- Action Buttons -->
+  <div mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="onCancel()">Cancel</button>
+    <button mat-flat-button color="primary" type="submit" [disabled]="isSaveDisabled">
+      Save
+    </button>
+  </div>
+
+</form>

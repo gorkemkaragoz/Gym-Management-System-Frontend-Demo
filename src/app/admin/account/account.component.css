@@ -1,0 +1,63 @@
+.breadcrumb {
+  margin: 1.5rem 4rem 0.5rem;
+  font-size: 0.875rem;
+}
+.breadcrumb a {
+  color: #0d6efd;
+  text-decoration: none;
+}
+.breadcrumb span {
+  font-weight: 600;
+  color: #555;
+}
+
+.account-page {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  width: 400px;
+  text-align: center;
+}
+
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #0d6efd;
+  margin-bottom: 1rem;
+}
+
+.info h2 {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+.info p {
+  margin: 0.25rem 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.btn-change {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  background-color: #0d6efd;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-change:hover {
+  background-color: #0b5ed7;
+}

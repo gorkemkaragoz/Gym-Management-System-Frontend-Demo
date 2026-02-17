@@ -1,0 +1,19 @@
+<div class="menu-container" *ngIf="userRole">
+  <div class="menu-grid">
+    <div
+      class="menu-card"
+      *ngFor="let item of menuItems"
+      [routerLink]="['/', userRole, 'healthy-bar', item.id]"
+    >
+      <img
+        [src]="getImagePath(item.name)"
+        [alt]="item.name"
+        class="product-image"
+      />
+      <div class="product-name">{{ item.name }}</div>
+      <div class="product-price">
+        {{ item.price | currency:'USD':'symbol':'1.0-2' }}
+      </div>
+    </div>
+  </div>
+</div>

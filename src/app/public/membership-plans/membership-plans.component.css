@@ -1,0 +1,116 @@
+/* src/app/public/plans-page/plans-page.component.css */
+.plans-container {
+  padding: 60px 20px;
+  background-color: #f8f9fa;
+  min-height: 80vh;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header-section {
+  margin-bottom: 50px;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a237e;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.plan-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.plan-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 300px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.plan-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.plan-card.premium {
+  border: 2px solid #3f51b5;
+  transform: scale(1.05);
+}
+
+.plan-card.premium:hover {
+  transform: scale(1.05) translateY(-10px);
+}
+
+.card-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3f51b5;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.icon-box {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.plan-card h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #3f51b5;
+  margin-bottom: 25px;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 0; /* Buton kalktığı için alt boşluğu sıfırladık */
+  text-align: left;
+}
+
+.features li {
+  padding: 12px 0;
+  color: #555;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.features li:last-child {
+  border-bottom: none;
+}
+
+.footer-note {
+  margin-top: 50px;
+  color: #888;
+  font-style: italic;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}

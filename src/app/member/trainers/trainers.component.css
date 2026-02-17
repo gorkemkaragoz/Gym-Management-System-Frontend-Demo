@@ -1,0 +1,42 @@
+/* trainers.component.css */
+.trainer-container {
+  display: grid;
+  /* Ekran genişliğine göre yan yana kaç kart sığarsa o kadar dizer */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  gap: 25px;
+  padding: 40px; /* Kenarlardan biraz boşluk iyi durur */
+}
+
+.trainer-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Biraz daha belirgin gölge */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trainer-card img {
+  width: 140px; /* Görseli biraz büyüttüm */
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid #f0f0f0;
+}
+
+.trainer-card button {
+  margin-top: 15px;
+  /* Eğer Angular Material kullanıyorsan buna gerek yok, 
+     ama düz butonsa şık durması için: */
+  padding: 8px 16px;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

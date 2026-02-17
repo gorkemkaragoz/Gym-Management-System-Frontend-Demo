@@ -1,0 +1,61 @@
+<!-- ----------------------------------------------------------------------- -->
+<!--   menu-item.component.html – Ürün Detay Sayfası (Product Detail Page)   -->
+<!-- ----------------------------------------------------------------------- -->
+<div class="product-detail-page">
+
+  <!-- 
+    2. Breadcrumb bölümü (sayfanın sol sınırına hizalı olacak)
+    “Healthy Bar Menu” bağlantısı → /member/healthy-bar
+    Ürünün gerçek adı → {{ item?.name }}
+  -->
+  <nav class="breadcrumb">
+<a [routerLink]="['/', role?.toLowerCase(), 'healthy-bar']">Healthy Bar Menu</a>    <span class="separator">&gt;</span>
+    <span class="current">{{ item?.name }}</span>
+  </nav>
+
+  <!--
+    3. Ürün detayı – item yüklendiğinde gösterilecek detay bloğu:
+        - Solda sabit boyutlu kare görsel (image-wrapper içinde)
+        - Sağda ürün başlığı, Ingredients, Allergens, Price
+  -->
+  <div *ngIf="item" class="detail-content">
+    <!-- 3.1. Görsel -->
+    <div class="image-wrapper">
+      <img
+        [src]="getImagePath(item.name)"
+        [alt]="item.name"
+        class="detail-image"
+      />
+    </div>
+
+    <!-- 3.2. Metin Bloğu -->
+    <div class="info-wrapper">
+      <!-- Ürün başlığı -->
+      <h2 class="product-title">{{ item.name }}</h2>
+
+      <!-- Ingredients Bölümü -->
+      <div class="section">
+        <p class="section-heading">Ingredients:</p>
+        <ul class="section-list">
+          <li *ngFor="let ingr of item.ingredients">{{ ingr }}</li>
+        </ul>
+      </div>
+
+      <!-- Allergens Bölümü -->
+      <div class="section">
+        <p class="section-heading">Allergens:</p>
+        <ul class="section-list">
+          <li *ngFor="let allergen of item.allergens">{{ allergen }}</li>
+        </ul>
+      </div>
+
+      <!-- Fiyat -->
+      <div class="price">{{ item.price | currency:'USD':'symbol':'1.0-2' }}</div>
+    </div>
+  </div>
+
+  <!-- 4. Yükleniyor Placeholder -->
+  <div *ngIf="!item" class="loading-placeholder">
+    Ürün yükleniyor…
+  </div>
+</div>

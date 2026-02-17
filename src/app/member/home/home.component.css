@@ -1,0 +1,104 @@
+.member-home-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+.welcome-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.user-name {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.schedule-title {
+  color: #007bff;
+  font-size: 22px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.schedule-subtitle {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.days-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.day-tab {
+  padding: 6px 14px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background-color: white;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.day-tab.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid #999;
+  padding: 10px 12px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.schedule-table th {
+  background-color: #f1f1f1;
+  font-weight: 600;
+}
+
+.enroll-btn {
+  padding: 5px 12px;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.not-joined {
+  background-color: #28a745;
+  color: white;
+}
+
+.joined {
+  background-color: #dc3545;
+  color: white;
+}
+
+.enroll-btn:hover {
+  opacity: 0.9;
+}
+
+/* Toastr mesajlarının görünmesini garantiye al */
+/* toast mesajları sağ üstte gözüksün */
+#toast-container.toast-top-right {
+  top: 20px !important;
+  right: 20px !important;
+  bottom: auto !important;
+  left: auto !important;
+}

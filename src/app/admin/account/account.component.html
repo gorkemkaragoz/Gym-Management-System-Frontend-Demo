@@ -1,0 +1,23 @@
+<!-- src/app/admin/account/account.component.html -->
+
+<div class="account-page" *ngIf="user">
+  <div class="card">
+    <img
+      [src]="user.photoUrl || 'assets/default-avatar.png'"
+      alt="Profile Photo"
+      class="profile-photo"
+    />
+
+    <div class="info">
+      <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+      <p class="email">{{ user.email }}</p>
+      <p class="role">Role: {{ user.roleName }}</p>
+      <p class="gender">Gender: {{ user.gender || 'Not specified' }}</p>
+      <p class="tc">TCKN: {{ user.tcNo }}</p>
+    </div>
+
+    <button class="btn-change" (click)="navigateToChangePassword()">
+  Change password
+</button>
+  </div>
+</div>

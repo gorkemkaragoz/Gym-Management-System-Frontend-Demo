@@ -1,0 +1,11 @@
+<!--src: src/app/member/trainers/trainers.component.html-->
+<div class="trainer-container">
+  <div class="trainer-card" *ngFor="let trainer of trainers">
+    <img [src]="trainer.photoUrl || 'assets/blank-image/blank_profile.png'" alt="Trainer Photo" />
+    <h3>{{ trainer.firstName }} {{ trainer.lastName }}</h3>
+    <button (click)="goToProfile(trainer.id)">View Profile</button>
+  </div>
+</div>
+
+
+

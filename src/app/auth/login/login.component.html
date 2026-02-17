@@ -1,0 +1,38 @@
+<!-- src/app/auth/login/login.component.html -->
+<div class="login-page">
+  <h2>Login to your account</h2>
+
+  <form class="login-form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        placeholder="Enter your email"
+        [(ngModel)]="model.email"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        placeholder="Enter your password"
+        [(ngModel)]="model.password"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn-login">
+      Login
+    </button>
+
+    <p class="forgot">
+      <a (click)="onForgot()">Forgot my password?</a>
+    </p>
+  </form>
+</div>

@@ -1,0 +1,101 @@
+<!-- src/app/admin/manage-users/manage-users.component.html -->
+<div class="container">
+  <h2 class="title">Manage Users</h2>
+
+  <div class="controls">
+    <mat-form-field appearance="outline" class="search-box">
+      <mat-label>Search by name</mat-label>
+      <input
+        matInput
+        [(ngModel)]="searchText"
+        (ngModelChange)="filterUsers()"
+        placeholder="e.g. Jesse or Jane"
+      />
+    </mat-form-field>
+
+    <div class="filter-group">
+      <span class="filter-label">Filter by Role:</span>
+      <mat-radio-group [(ngModel)]="selectedRole" (change)="filterUsers()">
+        <mat-radio-button value="ALL">All</mat-radio-button>
+        <mat-radio-button value="MEMBER">Member</mat-radio-button>
+        <mat-radio-button value="TRAINER">Trainer</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" (click)="openAddUserDialog()">Add User</button>
+    </div>
+  </div>
+
+  <div class="user-table" *ngIf="filteredUsers.length > 0; else noUsers">
+    <table mat-table [dataSource]="filteredUsers" class="mat-elevation-z8">
+
+      <!-- Full Name -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Full Name</th>
+        <td mat-cell *matCellDef="let user">{{ user.firstName }} {{ user.lastName }}</td>
+      </ng-container>
+
+      <!-- Gender -->
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef>Gender</th>
+        <td mat-cell *matCellDef="let user">{{ user.gender || '-' }}</td>
+      </ng-container>
+
+      <!-- Role -->
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef>Role</th>
+        <td mat-cell *matCellDef="let user">{{ user.roleName || user.role }}</td>
+      </ng-container>
+
+      <!-- Membership -->
+      <ng-container matColumnDef="package">
+        <th mat-header-cell *matHeaderCellDef>Package</th>
+        <td mat-cell *matCellDef="let user">{{ user.packageName || '-' }}</td>
+      </ng-container>
+
+      <!-- Membership Status -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let user">{{ user.membershipStatus || '-' }}</td>
+      </ng-container>
+
+      <!-- Certificate -->
+      <ng-container matColumnDef="certificate">
+        <th mat-header-cell *matHeaderCellDef>Certificate</th>
+        <td mat-cell *matCellDef="let user">{{ user.certificateName || '-' }}</td>
+      </ng-container>
+
+      <!-- Issued By -->
+      <ng-container matColumnDef="issuedBy">
+        <th mat-header-cell *matHeaderCellDef>Issued By</th>
+        <td mat-cell *matCellDef="let user">{{ user.issuedBy || '-' }}</td>
+      </ng-container>
+
+      <!-- Issued Date -->
+      <ng-container matColumnDef="issuedDate">
+        <th mat-header-cell *matHeaderCellDef>Issued Date</th>
+        <td mat-cell *matCellDef="let user">
+          {{ user.issuedDate ? (user.issuedDate | date: 'longDate') : '-' }}
+        </td>
+      </ng-container>
+
+      <!-- Actions -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let user">
+          <button mat-stroked-button color="accent" (click)="openEditUserDialog(user)">
+            Edit
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <ng-template #noUsers>
+    <p class="no-users-message">No users found.</p>
+  </ng-template>
+</div>

@@ -1,0 +1,52 @@
+<!--src/app/member/home/home.component.html-->
+<div class="member-home-container">
+  <h2 class="welcome-title">Welcome Back 😊</h2>
+  <h3 class="user-name">User First name !</h3>
+
+  <h3 class="schedule-title">Classes Schedule</h3>
+  <p class="schedule-subtitle">Weekly schedule with lesson times, trainers, and attendance.</p>
+
+  <div class="days-tabs">
+    <span 
+      class="day-tab" 
+      *ngFor="let day of days" 
+      [class.active]="selectedDay === day" 
+      (click)="selectDay(day)">
+      {{ day }}
+    </span>
+  </div>
+
+  <table class="schedule-table" *ngIf="getFilteredSchedules().length > 0">
+    <thead>
+      <tr>
+        <th>Lesson Name</th>
+        <th>Start Time</th>
+        <th>Finish Time</th>
+        <th>Trainer Name</th>
+        <th>Student Count</th>
+        <th>Enrollment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let schedule of getFilteredSchedules()">
+        <td>{{ schedule.courseName }}</td>
+        <td>{{ schedule.startTime }}</td>
+        <td>{{ schedule.endTime }}</td>
+        <td>{{ schedule.trainerName }}</td>
+        <td>{{ schedule.currentStudentCount }}/{{ schedule.maxCapacity }}</td>
+        <td>
+          <button 
+  class="enroll-btn"
+  [ngClass]="{ 'joined': isEnrolled(schedule.scheduleId), 'not-joined': !isEnrolled(schedule.scheduleId) }"
+  (click)="toggleEnrollment(schedule)">
+  {{ isEnrolled(schedule.scheduleId) ? 'CANCEL' : 'JOIN' }}
+</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="getFilteredSchedules().length === 0" class="no-schedules">
+    No schedules found for {{ selectedDay }}.
+  </p>
+</div>
